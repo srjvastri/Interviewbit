@@ -1,0 +1,26 @@
+public class Solution {
+    public String countAndSay(int A) {
+        StringBuilder s = new StringBuilder();
+        String s1="";
+        for(int n=1 ; n<=A; n++){
+           String str = Integer.toString(n);
+           int i=0;
+           int j=i+1;
+           while(j<str.length()){
+               while(str.charAt(i) == str.charAt(j)){
+                   j++;
+               }
+               if(j> str.length()){
+                   s1=str.substring(i );
+               }else{
+                    s1 =str.substring(i , j);
+               }
+               s.append(s1.length());
+               s.append(s1.charAt(i));
+               i=j;
+                   
+           }
+        }
+        return s.toString();
+    }
+}
