@@ -1,0 +1,30 @@
+public class Solution {
+    public String longestPalindrome(String A) {
+        if(A.length() ==2 && A.charAt(0)==A.charAt(1)){
+            return A;
+        }
+        int start =0;
+        int end =0;
+        for(int i=0 ; i < A.length() ; i++){
+            char c=A.charAt(i);
+            int l1= helper(A , i ,i );
+            int l2= helper(A , i ,i+1 );
+            int l = Math.max(l1, l2);
+            
+            if(l> end-start +1){
+                start= i-(l-1)/2;
+                end=i+l/2;
+            }
+        }
+        return A.substring(start , end+1);
+        
+        
+    }
+    public int helper(String s , int L , int R){
+        while(L> 0 && R<s.length() && s.charAt(L)==s.charAt(R)){
+            L--;
+            R++;
+        }
+        return R-L-1;
+    }
+}
