@@ -1,0 +1,27 @@
+public class Solution {
+    public int maxPoints(ArrayList<Integer> a, ArrayList<Integer> b) {
+        HashMap<Double , Integer> map = new HashMap<>();
+        int i , j=1;
+        int m = a.get(0);
+        int n = b.get(0);
+        while(i < a.size() && j < b.size()){
+            double slope = (n-b.get(i)) / (m - a.get(i));  
+            if(map.containsKey(slope)){
+                map.put(slope , map.get(slope) + 1);
+            }else{
+                map.put(slope , 1);
+            }
+            i++;
+            j++;
+        }
+        ArrayList<Integer> list = new ArrayList<>();
+        for(Map.Entry entry : map.entrySet()){
+            list.add(entry.getValue());
+            
+        }
+        list = Collectios.sort(list);
+        int ans = list.get(list.size() -1);
+        list.clear();
+        return ans + 1;
+    }
+}
